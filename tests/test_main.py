@@ -4,6 +4,12 @@ from component_library.main import app
 
 client = TestClient(app)
 
+
+def test_get_index():
+    response = client.get("http://localhost:8000")
+    assert response.status_code == 200
+    assert "<h1>Component Library</h1>" in response.text
+
 def test_get_component():
     response = client.get("http://localhost:8000/component/test")
     assert response.status_code == 200

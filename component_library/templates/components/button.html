@@ -1,0 +1,22 @@
+{% block bottons %}
+    {% macro button(type="default", size="medium", icon=None, text="Button", disabled=False) %}
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 {{ 'bg-primary text-primary-foreground hover:bg-primary/90' if type == 'default' else '' }} {{ 'border border-input bg-background hover:bg-accent hover:text-accent-foreground' if type == 'outline' else '' }} {{ 'hover:bg-accent hover:text-accent-foreground' if type == 'ghost' else '' }} {{ 'h-9 rounded-md px-3' if size == 'small' else '' }} {{ 'h-10 px-4 py-2' if size == 'medium' else '' }} {{ 'h-11 rounded-md px-8' if size == 'large' else '' }} {{ 'opacity-50 cursor-not-allowed' if disabled else '' }}"
+                {% if disabled %}disabled{% endif %}
+                hx-post="/button-click"
+                hx-trigger="click"
+                hx-swap="outerHTML">
+            {% if icon %}<span class="mr-2">{{ icon | safe }}</span>{% endif %}
+            <span>{{ text }}</span>
+        </button>
+    {% endmacro %}
+    <div id="showcase"
+         class="flex flex-wrap items-center justify-center gap-8">
+        {{ button(type="default", size="small", text="Small") }}
+        {{ button(type="default", size="medium", text="Medium") }}
+        {{ button(type="default", size="large", text="Large") }}
+        {{ button(type="outline", size="medium", text="Outline") }}
+        {{ button(type="ghost", size="medium", text="Ghost") }}
+        {{ button(type="default", size="medium", text="Disabled", disabled=True) }}
+    </div>
+{% endblock %}
+

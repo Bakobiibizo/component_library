@@ -1,0 +1,9 @@
+{% extends "shared/_base.html" %}
+
+{% block content %}
+    <h1>Component Library</h1>
+    <p>This is the showcase for the component library written in Python using FastAPI, Jinja2 and HTMX</p>
+    {% block button %}
+        {% include "components/button.html" %}
+    {% endblock %}
+{% endblock %}
